@@ -1,6 +1,6 @@
 Various Arch install scripts I've made for my own purpose, fork as you wish!
 
-To use them: 
+#To use them: 
 
 start out with copying the installation scripts to a flash drive.
 then boot to an arch image via a CD ( working out the bugs with flash drive boot up ).
