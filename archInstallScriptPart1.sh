@@ -16,6 +16,7 @@ BASH=/bin/bash
 SUDOERS=/etc/sudoers
 CREATOR="CSCoder4ever"
 USB_MOUNT_POINT=/root/usb/
+GIT_CLONED_DIR=arch-o-matic
 
 # This script is made to automate the installation of Arch onto my server.
 # it assumes the disk you want to use is /dev/sda1
@@ -81,10 +82,11 @@ fi
 echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && echo "copying part 2 of install script"
-	cd $USB_MOUNT_POINT && cp archInstallScriptPart2.sh $MNT/etc/part2.sh &&\
-	chmod +x $MNT/etc/part2.sh && ln -s $MNT/etc/part2.sh $MNT/usr/bin/part2
+	#cd $USB_MOUNT_POINT && cp archInstallScriptPart2.sh $MNT/etc/part2.sh &&\
+	cd $GIT_CLONED_DIR && cp archInstallScriptPart2.sh $MNT/etc/part2.sh &&\
+	chmod +x $MNT/etc/part2.sh && ln -s $MNT/etc/part2.sh $MNT/usr/bin/parttwo
 
-sleep 1 && echo "arch-chrooting into the new install, type in \"part2\" to get part 2 going."
+sleep 1 && echo "arch-chrooting into the new install, type in \"parttwo\" to get part 2 going."
 	arch-chroot $MNT
 
 
