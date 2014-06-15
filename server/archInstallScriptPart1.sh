@@ -79,6 +79,10 @@ if [ "$mkResponse" = "y" ]; then
 	$USER_EDITOR $MNT$MKINITCPIO_CONF
 fi
 
+sleep 5 && echo "Edit /etc/pacman.conf"
+	$USER_EDITOR $MNT/etc/pacman.conf
+	# and enable multi-arch support, if desired.
+
 echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && echo "copying part 2 of install script"
