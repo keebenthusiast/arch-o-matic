@@ -63,6 +63,15 @@ else
 	echo "skipping..."
 fi
 
+# Below is to copy the most current i3 file on github to the local install.
+
+sleep 1 && echo "Copying dzen2 conky and i3 config file"
+	git clone https://github.com/CSCoder4ever/cscoder-files.git
+	cd cscoder-files
+	mkdir /home/$userName/.i3
+	cp i3-configs/config /home/$userName/.i3/config
+	cp conky-configs/DzenConkyBar /home/$userName/.conkyrc
+
 sleep 1 && echo "removing temporary files"
 	rm /etc/part2.sh && rm /usr/bin/parttwo
 sleep 1 && echo "Installation complete!"
