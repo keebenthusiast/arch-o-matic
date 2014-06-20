@@ -71,6 +71,8 @@ sleep 1 && echo "Copying dzen2 conky and i3 config file"
 	mkdir /home/$userName/.i3
 	cp i3-configs/config /home/$userName/.i3/config
 	cp conky-configs/DzenConkyBar /home/$userName/.conkyrc
+	cd ..
+	rm -r cscoder-files
 
 sleep 1 && echo "removing temporary files"
 	rm /etc/part2.sh && rm /usr/bin/parttwo
