@@ -44,7 +44,7 @@ if [ "$SyuR" = "y" ]; then
 	pacman -Syyu
 	sleep 1 && echo "Installing necessary desktop programs"
         pacman -S wpa_supplicant dialog git alsa-utils alsa-plugins xorg-server xorg-xinit xorg-server-utils\
-         ttf-dejavu mesa arandr openbox sakura nitrogen dmenu networkmanager xfce4-notifyd\
+         ttf-dejavu mesa arandr openbox sakura nitrogen dmenu networkmanager network-manager-applet xfce4-notifyd\
          gnome-icon-theme wicd wicd-gtk wireless_tools gnome-keyring thunar thunar-volman gvfs gvfs-afc tilda\
          conky firefox htop pavucontrol xfce4-power-manager audacious vlc terminator leafpad pulseaudio screenfetch\
          scrot gimp lxappearance viewnior thunderbird libreoffice flashplugin volumeicon fakeroot jshon expac\
