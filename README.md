@@ -15,10 +15,7 @@ clone:
 change over to the newly cloned repo:
 <code>cd arch-o-matic</code>
 
-decide what type of script you'll want:
-<code>cd server | desktop | laptop<code>
-
-execute part1 of script:
-<code>sh archInstallScriptPart1.sh</code>
+execute the initial script:
+<code>sh ArchInstallInitial.sh</code>
 
 and have fun.
