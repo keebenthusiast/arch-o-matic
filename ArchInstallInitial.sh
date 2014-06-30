@@ -85,8 +85,10 @@ echo "Edit /etc/pacman.conf" && sleep 5
 
 echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
 
-sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, \n( 3 ) = Server ( Default = 1 )\n" 
-echo read -p "Input Install type ( 1 | 2 | 3 ): " DLORS
+sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
+echo "( 3 ) = Server ( Default = 1 )" 
+echo 
+read -p "Input Install type ( 1 | 2 | 3 ): " DLORS
 case $DLORS in
    1) echo "cp Desktop Installation script" && cp desktop/$PART2 $MNT/part2.sh ;;
    2) echo "cp Laptop Installation script" && cp laptop/$PART2 $MNT/part2.sh   ;;
