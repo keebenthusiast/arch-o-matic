@@ -2,7 +2,6 @@
 
 SDA1=/dev/sda1
 SDA=/dev/sda
-MNT=/mnt
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
@@ -33,7 +32,7 @@ read -p "continue? y/n: " YesOrNo # asks if you'd like to format the drive
 
 if [ "$YesOrNo" = "y" ]; then  # If yes, format here we come!
 	#echo "Formatting  $SDA1 to ext4" 
-	mkfs -t ext4 $SDA1 # mkfs.ext4 $SDA1
+        mkfs.ext4 $SDA1
 	#echo "Format complete!"
 else #if no, program will exit.
 	read -p "exit? y/n: " exitR
@@ -50,7 +49,7 @@ else
 fi
 
 sleep 1 && echo "Mounting $SDA1"
-	mount $SDA1 $MNT
+	mount $SDA1 /mnt
 
 sleep 1 && read -p "Which editor would you like to use? " USER_EDITOR
 
@@ -60,30 +59,30 @@ if [ "$pacResponse" = "y" ]; then
 fi
 
 sleep 1 && echo "installing base system"
-	pacstrap $MNT base base-devel grub-bios sudo
+	pacstrap /mnt base base-devel grub-bios sudo
 
 sleep 1 && echo "Generating fstab"
-	genfstab -p $MNT >> $MNT$FSTAB
+	genfstab -p /mnt >> /mnt$FSTAB
 
 sleep 1 && echo "edit $HOSTNAME"
-	$USER_EDITOR $MNT$HOSTNAME
+	$USER_EDITOR /mnt$HOSTNAME
 
 sleep 1 && echo "creating a symlink for $ZONE to $LOCAL_TIME"
-	ln -s $MNT$ZONE $MNT$LOCAL_TIME
+	ln -s $MNT$ZONE /mnt$LOCAL_TIME
 
 sleep 1 && echo "uncomment a section in $LOCALE_GEN"
-	$USER_EDITOR $MNT$LOCALE_GEN
+	$USER_EDITOR /mnt$LOCALE_GEN
 
 sleep 1 && read -p "Would you like to edit $MKINITCPIO_CONF? y/n: " mkResponse
 if [ "$mkResponse" = "y" ]; then
-	$USER_EDITOR $MNT$MKINITCPIO_CONF
+	$USER_EDITOR /mnt$MKINITCPIO_CONF
 fi
 
 echo "Edit /etc/pacman.conf" && sleep 5 
-	$USER_EDITOR $MNT/etc/pacman.conf
+	$USER_EDITOR /mnt/etc/pacman.conf
 	# and enable multi-arch support, if desired.
 
-echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
+echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR /mnt$SUDOERS
 
 sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
 echo "( 3 ) = Server ( Default = 1 )" 
