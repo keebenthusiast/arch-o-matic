@@ -61,6 +61,9 @@ fi
 sleep 1 && echo "installing base system"
 	pacstrap /mnt base base-devel grub-bios sudo
 
+# if something goes wrong with the pacstrap install, uncomment the code below
+#read =p "did everything go right? if so, press enter to continue... " debugging
+
 sleep 1 && echo "Generating fstab"
 	genfstab -p /mnt >> /mnt$FSTAB
 
@@ -88,8 +91,8 @@ sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
 echo "( 3 ) = Server ( Default = 1 )" 
 echo 
 read -p "Input Install type ( 1 | 2 | 3 ): " DLORS
-case $DLORS in
-   1) echo "cp Desktop Installation script" && cp desktop/$PART2 $MNT/part2.sh ;;
+case $DLORS in 
+   1) echo "cp Desktop Installation script" && cp desktop/$PART2 $MNT/part2.sh ;; 
    2) echo "cp Laptop Installation script" && cp laptop/$PART2 $MNT/part2.sh   ;;
    3) echo "cp Server Installation script" && cp server/$PART2 $MNT/part2.sh   ;;
    *) echo "cp Desktop Installation script" && cp desktop/$PART2 $MNT/part2.sh ;;
