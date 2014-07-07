@@ -2,7 +2,7 @@ Various Arch install scripts I've made for my own purpose, fork as you wish!
 
 #To use them: 
 
-Boot into the Arch image with either a CD or Flash drive.
+Boot into the Arch image ( preferably newer than 6 months ) with either a CD or Flash drive.
 connect to network ( skip if using wired ):
 <code>wifi-menu</code>
 
