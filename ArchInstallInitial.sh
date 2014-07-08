@@ -99,6 +99,6 @@ case $DLORS in
 esac
 
 sleep 1 && echo "arch-chrooting into the new install"
-	arch-chroot $MNT $BASH part2.sh
+	arch-chroot /mnt $BASH part2.sh
 
 
