@@ -1,11 +1,12 @@
 #!/bin/bash
 
-SDA1=/dev/sda1
-SDA=/dev/sda
+SDA1=/dev/sda1 # change as needed
+SDA=/dev/sda # change as needed
+MNT=/mnt # change as needed.
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
-ZONE=/usr/share/zoneinfo/America/Los_Angeles
+ZONE=/usr/share/zoneinfo/America/Los_Angeles #change as needed.
 LOCAL_TIME=/etc/localtime
 LOCALE_GEN=/etc/locale.gen
 LOCALE_CONF=/etc/locale.conf
@@ -49,7 +50,7 @@ else
 fi
 
 sleep 1 && echo "Mounting $SDA1"
-	mount $SDA1 /mnt
+	mount $SDA1 $MNT
 
 sleep 1 && read -p "Which editor would you like to use? " USER_EDITOR
 
@@ -59,33 +60,33 @@ if [ "$pacResponse" = "y" ]; then
 fi
 
 sleep 1 && echo "installing base system"
-	pacstrap /mnt base base-devel grub-bios sudo
+	pacstrap $MNT base base-devel grub-bios sudo
 
 # if something goes wrong with the pacstrap install, uncomment the code below
 #read =p "did everything go right? if so, press enter to continue... " debugging
 
 sleep 1 && echo "Generating fstab"
-	genfstab -p /mnt >> /mnt$FSTAB
+	genfstab -p $MNT >> /mnt$FSTAB
 
 sleep 1 && echo "edit $HOSTNAME"
 	$USER_EDITOR /mnt$HOSTNAME
 
 sleep 1 && echo "creating a symlink for $ZONE to $LOCAL_TIME"
-	ln -s $MNT$ZONE /mnt$LOCAL_TIME
+	ln -s $MNT$ZONE $MNT$LOCAL_TIME
 
 sleep 1 && echo "uncomment a section in $LOCALE_GEN"
-	$USER_EDITOR /mnt$LOCALE_GEN
+	$USER_EDITOR $MNT$LOCALE_GEN
 
 sleep 1 && read -p "Would you like to edit $MKINITCPIO_CONF? y/n: " mkResponse
 if [ "$mkResponse" = "y" ]; then
-	$USER_EDITOR /mnt$MKINITCPIO_CONF
+	$USER_EDITOR $MNT$MKINITCPIO_CONF
 fi
 
 echo "Edit /etc/pacman.conf" && sleep 5 
-	$USER_EDITOR /mnt/etc/pacman.conf
+	$USER_EDITOR $MNT/etc/pacman.conf
 	# and enable multi-arch support, if desired.
 
-echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR /mnt$SUDOERS
+echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
 echo "( 3 ) = Server ( Default = 1 )" 
@@ -99,6 +100,6 @@ case $DLORS in
 esac
 
 sleep 1 && echo "arch-chrooting into the new install"
-	arch-chroot /mnt $BASH part2.sh
+	arch-chroot $MNT $BASH part2.sh
 
 
