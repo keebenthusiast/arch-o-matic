@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SDA1=/dev/sda1
-SDA=/dev/sda
-MNT=/mnt
+SDA1=/dev/sda1 # change as needed
+SDA=/dev/sda # change as needed
+MNT=/mnt # change as needed
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
@@ -28,7 +28,7 @@ sleep 1 && echo "set root password"
 	passwd
 
 sleep 1 && echo "Configuring grub"
-	grub-install --target=i386-pc --recheck --debug --force /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg 
+	grub-install --target=i386-pc --recheck --debug --force $SDA && grub-mkconfig -o /boot/grub/grub.cfg 
 
 sleep 1 && read -p "Create user now? y/n: " userResponse
 if [ "$userResponse" = "y" ]; then
