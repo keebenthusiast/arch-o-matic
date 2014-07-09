@@ -28,7 +28,7 @@ sleep 1 && echo "set root password"
 	passwd
 
 sleep 1 && echo "Configuring grub"
-	grub-install --target=i386-pc --recheck --debug --force /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg 
+	grub-install --target=i386-pc --recheck --debug --force $SDA && grub-mkconfig -o /boot/grub/grub.cfg 
 
 sleep 1 && read -p "Create user now? y/n: " userResponse
 if [ "$userResponse" = "y" ]; then
