@@ -54,7 +54,7 @@ if [ "$SyuR" = "y" ]; then
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
 		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
-		makepkg
+		makepkg --asroot
 		pacman -U *.pkg.tar.gz
 		echo "updating packer"
 		packer -Syyu
