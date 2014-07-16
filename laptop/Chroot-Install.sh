@@ -42,7 +42,7 @@ fi
 sleep 1 && read -p "Would you like to update the machine and install necessary programs? y/n: " SyuR
 if [ "$SyuR" = "y" ]; then
 	pacman -Syyu
-	sleep 1 && echo "Installing necessary desktop programs" # Optimized for a laptop with Intel Graphics.
+	sleep 1 && echo "Installing necessary programs" # Optimized for a laptop with Intel Graphics.
         pacman -S wpa_supplicant dialog git alsa-utils alsa-plugins xorg-server xorg-xinit xorg-server-utils\
         ttf-dejavu mesa arandr xf86-video-intel xf86-input-synaptics i3 sakura nitrogen dmenu networkmanager\
         xfce4-notifyd network-manager-applet gnome-icon-theme wicd wicd-gtk wireless_tools gnome-keyring\
@@ -50,7 +50,8 @@ if [ "$SyuR" = "y" ]; then
         vlc terminator leafpad pulseaudio screenfetch scrot gimp lxappearance viewnior thunderbird libreoffice\
         flashplugin volumeicon fakeroot jshon expac wget gparted clipit transmission-gtk file-roller p7zip zip\
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
-        lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools
+        lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
+        galculator
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
 		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
