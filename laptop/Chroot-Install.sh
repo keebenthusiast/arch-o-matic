@@ -51,7 +51,7 @@ if [ "$SyuR" = "y" ]; then
         flashplugin volumeicon fakeroot jshon expac wget gparted clipit transmission-gtk file-roller p7zip zip\
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
         lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
-        galculator
+        galculator figlet
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
 		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
@@ -79,7 +79,7 @@ sleep 1 && echo "Copying dzen2 conky and i3-related files"
 	rm -r cscoder-files
 
 sleep 1 && echo "removing temporary files"
-	rm /etc/part2.sh && rm /usr/bin/parttwo
+	rm /part2.sh 
 sleep 1 && echo "Installation complete!"
 
 exit
