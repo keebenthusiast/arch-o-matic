@@ -64,7 +64,7 @@ else
 fi
 
 sleep 1 && echo "removing temporary files"
-	rm /etc/part2.sh && rm /usr/bin/parttwo
+	rm /part2.sh
 sleep 1 && echo "Installation complete!"
 
 exit
