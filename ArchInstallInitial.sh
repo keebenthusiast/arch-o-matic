@@ -63,7 +63,7 @@ sleep 1 && echo "installing base system"
 	pacstrap $MNT base base-devel grub-bios sudo
 
 # if something goes wrong with the pacstrap install, uncomment the code below
-#read =p "did everything go right? if so, press enter to continue... " debugging
+#read -p "did everything go right? if so, press enter to continue... " debugging
 
 sleep 1 && echo "Generating fstab"
 	genfstab -p $MNT >> /mnt$FSTAB
