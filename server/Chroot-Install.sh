@@ -44,7 +44,7 @@ if [ "$SyuR" = "y" ]; then
 	pacman -Syyu
 	sleep 1 && echo "Installing necessary server programs"
         pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\ 
-        mariadb perl-net-ssleay screenfetch emacs tmux #jenkins 
+        mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
 						
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
