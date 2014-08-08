@@ -45,7 +45,6 @@ if [ "$SyuR" = "y" ]; then
 	sleep 1 && echo "Installing necessary server programs"
         pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\ 
         mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
-						
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
 		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
