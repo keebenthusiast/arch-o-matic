@@ -51,7 +51,7 @@ if [ "$SyuR" = "y" ]; then
         flashplugin volumeicon fakeroot jshon expac wget gparted clipit transmission-gtk file-roller p7zip zip\
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
         lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
-        galculator figlet bc 
+        galculator figlet bc evince 
 	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
 	if [ "$packerResponse" = "y" ]; then
 		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
