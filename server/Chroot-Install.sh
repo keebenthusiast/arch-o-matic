@@ -45,7 +45,7 @@ if [ "$SyuR" = "y" ]; then
 	sleep 1 && echo "Installing necessary server programs"
         pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\ 
         mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
-	if [ -f packer.pkg.tar.gz ]; then
+	if [ -f packer.pkg.tar.xz ]; then
 	   echo "Packer tar found, installing.. "
 		makepkg --asroot
 		pacman -U packer-*.pkg.tar.gz
