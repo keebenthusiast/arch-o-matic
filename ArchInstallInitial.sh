@@ -90,7 +90,7 @@ echo "uncomment the section that contains \"wheel\" to give $userName admin righ
         $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && read -p "Want to install Packer? y/n: " packerInstallResponse
-if [[ "$packerInstallResponse" = "y" || $packerInstallResponse = "Y" ]]; then
+if [[ "$packerInstallResponse" = "y" || "$packerInstallResponse" = "Y" ]]; then
     wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
     cp PKGBUILD $MNT
 fi
