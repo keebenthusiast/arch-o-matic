@@ -90,8 +90,8 @@ echo "uncomment the section that contains \"wheel\" to give $userName admin righ
 
 sleep 1 && read -p "Want to install Packer? y/n: " packerInstallResponse
 if [[ "$packerInstallResponse" = "y" || $packerInstallResponse = "Y" ]]; then
-    wget -O packer.pkg.tar.xz https://aur.archlinux.org/packages/pa/packer/PKGBUILD
-    cp packer.pkg.tar.xz $MNT
+    wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
+    cp PKGBUILD $MNT
 fi
 
 sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
