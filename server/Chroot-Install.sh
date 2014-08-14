@@ -31,7 +31,7 @@ sleep 1 && echo "Configuring grub"
 	grub-install --target=i386-pc --recheck --debug --force $SDA && grub-mkconfig -o /boot/grub/grub.cfg 
 
 sleep 1 && read -p "Create user now? y/n: " userResponse
-if [ "$userResponse" = "y" ]; then
+if [[ "$userResponse" = "y" || "$userResponse" = "Y" ]]; then
 	read -p "Enter new username: " userName
 	useradd -m -g users -G audio,video,optical,storage,disk,lp,sys,wheel,rfkill,log,systemd-journal -s $BASH $userName
 	passwd $userName
@@ -40,13 +40,13 @@ else
 fi
 
 sleep 1 && read -p "Would you like to update the machine and install necessary programs? y/n: " SyuR
-if [ "$SyuR" = "y" ]; then
+if [[ "$SyuR" = "y" || "$SyuR" = "Y" ]]; then
 	pacman -Syyu
 	sleep 1 && echo "Installing necessary server programs"
         pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\ 
         mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
 	if [ -f PKGBUILD ]; then
-	   echo "Packer tar found, installing.. "
+	   echo "Packer PKGBUILD found, installing.. "
 		makepkg --asroot
 		pacman -U packer-*.pkg.tar.gz
 		echo "updating packer"
@@ -59,6 +59,7 @@ fi
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
 	rm /PKGBUILD 
+	rm /packer-*.pkg.tar.gz
 sleep 1 && echo "Installation complete!"
 
 exit

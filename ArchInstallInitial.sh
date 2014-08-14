@@ -42,12 +42,12 @@ else #if no, program will exit.
 	fi
 fi
 
-sleep 1 && read -p "do you have wifi for the installation? y/n: " wifiResponse
-if [ "$wifiResponse" = "y" ]; then
-	wifi-menu
-else
-	echo "assuming you're connected via ethernet"
-fi
+#sleep 1 && read -p "do you have wifi for the installation? y/n: " wifiResponse
+#if [[ "$wifiResponse" = "y" || "$wifiResponse" = "Y" ]]; then
+#	wifi-menu
+#else
+#	echo "assuming you're connected via ethernet"
+#fi
 
 sleep 1 && echo "Mounting $SDA1"
 	mount $SDA1 $MNT
@@ -55,7 +55,7 @@ sleep 1 && echo "Mounting $SDA1"
 sleep 1 && read -p "Which editor would you like to use? " USER_EDITOR
 
 sleep 1 && read -p "Want to edit $PACMAN_MIRROR? y/n: " pacResponse
-if [ "$pacResponse" = "y" ]; then
+if [[ "$pacResponse" = "y" || "$pacResponse" = "Y" ]]; then
 	$USER_EDITOR $PACMAN_MIRROR
 fi
 
@@ -78,7 +78,7 @@ sleep 1 && echo "uncomment a section in $LOCALE_GEN"
 	$USER_EDITOR $MNT$LOCALE_GEN
 
 sleep 1 && read -p "Would you like to edit $MKINITCPIO_CONF? y/n: " mkResponse
-if [ "$mkResponse" = "y" ]; then
+if [[ "$mkResponse" = "y" || "$mkResponse" = "Y" ]]; then
 	$USER_EDITOR $MNT$MKINITCPIO_CONF
 fi
 
@@ -86,7 +86,8 @@ echo "Edit /etc/pacman.conf" && sleep 5
 	$USER_EDITOR $MNT/etc/pacman.conf
 	# and enable multi-arch support, if desired.
 
-echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
+echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5
+        $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && read -p "Want to install Packer? y/n: " packerInstallResponse
 if [[ "$packerInstallResponse" = "y" || $packerInstallResponse = "Y" ]]; then
