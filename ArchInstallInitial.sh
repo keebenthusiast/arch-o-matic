@@ -89,9 +89,9 @@ echo "Edit /etc/pacman.conf" && sleep 5
 echo "uncomment the section that contains \"wheel\" to give $userName admin rights." && sleep 5 && $USER_EDITOR $MNT$SUDOERS
 
 sleep 1 && read -p "Want to install Packer? y/n: " packerInstallResponse
-if [ "$packerInstallResponse" = "y" || $packerInstallResponse = "Y" ]; then
-    wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
-    cp packer-*.pkg.tar.gz $MNT
+if [[ "$packerInstallResponse" = "y" || $packerInstallResponse = "Y" ]]; then
+    wget -O packer.pkg.tar.gz https://aur.archlinux.org/packages/pa/packer/PKGBUILD
+    cp packer.pkg.tar.gz $MNT
 fi
 
 sleep 1 && echo "( 1 ) = Desktop, ( 2 ) = Laptop, "
