@@ -48,7 +48,7 @@ if [[ "$SyuR" = "y" || "$SyuR" = "Y" ]]; then
 	if [ -f PKGBUILD ]; then
 	   echo "Packer PKGBUILD found, installing.. "
 		makepkg --asroot
-		pacman -U packer-*.pkg.tar.gz
+		pacman -U packer-*.pkg.tar.xz
 		echo "updating packer"
 		packer -Syyu
 	fi
@@ -59,7 +59,7 @@ fi
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
 	rm /PKGBUILD 
-	rm /packer-*.pkg.tar.gz
+	rm /packer-*.pkg.tar.xz
 sleep 1 && echo "Installation complete!"
 
 exit
