@@ -43,7 +43,7 @@ sleep 1 && read -p "Would you like to update the machine and install necessary p
 if [[ "$SyuR" = "y" || "$SyuR" = "Y" ]]; then
 	pacman -Syyu
 	sleep 1 && echo "Installing necessary server programs"
-        pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\ 
+        pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\
         mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
 	if [ -f PKGBUILD ]; then
 	   echo "Packer PKGBUILD found, installing.. "
