@@ -41,25 +41,37 @@ fi
 
 sleep 1 && read -p "Would you like to update the machine and install necessary programs? y/n: " SyuR
 if [[ "$SyuR" = "y" || "$SyuR" = "Y" ]]; then
-	pacman -Syyu
-	sleep 1 && echo "Installing necessary server programs"
-        pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\
-        mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
-	if [ -f PKGBUILD ]; then
-	   echo "Packer PKGBUILD found, installing.. "
-		makepkg --asroot
-		pacman -U packer-*.pkg.tar.xz
-		echo "updating packer"
-		packer -Syyu
-	fi
+    pacman -Syyu 
+    sleep 1 && echo "Installing necessary server programs"
+    pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\
+    mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins 
 else
-	echo "skipping..."
+    echo "skipping..."
+fi
+
+# if packer's PKGBUILD file is found, it will install it.
+
+if [ -f PKGBUILD ]; then 
+    echo "Packer PKGBUILD found, installing.. "
+    makepkg --asroot
+    pacman -U packer-*.pkg.tar.*
+    echo "updating packer"
+    packer -Syyu
 fi
 
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
-	rm /PKGBUILD 
-	rm /packer-*.pkg.tar.xz
+	
+	# if either PKGBUILD and/or packer tar exist, remove them at will
+	
+	if [ -f PKGBUILD ]; then
+	    rm /PKGBUILD
+	fi
+	
+	if [ -f packer-*.pkg.tar.* ]; then
+	    rm /packer-*.pkg.tar.*
+	fi
+
 sleep 1 && echo "Installation complete!"
 
 exit
