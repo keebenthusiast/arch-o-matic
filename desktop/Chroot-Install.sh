@@ -51,20 +51,33 @@ if [ "$SyuR" = "y" ]; then
          wget gparted xfce4 clipit transmission-gtk file-roller p7zip zip unrar arj unace lib32-glibc libva emacs\
          mc moc openssh nfs-utils gksu lxde-icon-theme wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers\
          dosfstools bc
-	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
-	if [ "$packerResponse" = "y" ]; then
-		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
-		makepkg --asroot
-		pacman -U *.pkg.tar.gz
-		echo "updating packer"
-		packer -Syyu
-	fi
 else
 	echo "skipping..."
 fi
 
+# if packer's PKGBUILD file is found, it will install it.
+
+if [ -f PKGBUILD ]; then 
+    echo "Packer PKGBUILD found, installing.. "
+    makepkg --asroot
+    pacman -U packer-*.pkg.tar.*
+    echo "updating packer"
+    packer -Syyu
+fi
+
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
+
+	# if either PKGBUILD and/or packer tar exist, remove them at will
+	
+	if [ -f PKGBUILD ]; then
+	    rm /PKGBUILD
+	fi
+	
+	if [ -f packer-*.pkg.tar.* ]; then
+	    rm /packer-*.pkg.tar.*
+	fi
+
 sleep 1 && echo "Installation complete!"
 
 exit

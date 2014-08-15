@@ -52,16 +52,18 @@ if [ "$SyuR" = "y" ]; then
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
         lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
         galculator figlet bc evince 
-	sleep 1 && read -p "would you like to install packer? y/n: " packerResponse
-	if [ "$packerResponse" = "y" ]; then
-		wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
-		makepkg --asroot
-		pacman -U *.pkg.tar.gz
-		echo "updating packer"
-		packer -Syyu
-	fi
 else
 	echo "skipping..."
+fi
+
+# if packer's PKGBUILD file is found, it will install it.
+
+if [ -f PKGBUILD ]; then 
+    echo "Packer PKGBUILD found, installing.. "
+    makepkg --asroot
+    pacman -U packer-*.pkg.tar.*
+    echo "updating packer"
+    packer -Syyu
 fi
 
 # Below is to copy the most current i3 file on github to the local install.
@@ -79,7 +81,18 @@ sleep 1 && echo "Copying dzen2 conky and i3-related files"
 	rm -r cscoder-files
 
 sleep 1 && echo "removing temporary files"
-	rm /part2.sh 
+	rm /part2.sh
+
+	# if either PKGBUILD and/or packer tar exist, remove them at will
+	
+	if [ -f PKGBUILD ]; then
+	    rm /PKGBUILD
+	fi
+	
+	if [ -f packer-*.pkg.tar.* ]; then
+	    rm /packer-*.pkg.tar.*
+	fi
+
 sleep 1 && echo "Installation complete!"
 
 exit
