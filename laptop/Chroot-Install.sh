@@ -6,7 +6,6 @@ MNT=/mnt # change as needed
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
-ZONE=/usr/share/zoneinfo/America/Los_Angeles
 LOCAL_TIME=/etc/localtime
 LOCALE_GEN=/etc/locale.gen
 LOCALE_CONF=/etc/locale.conf
@@ -51,7 +50,7 @@ if [ "$SyuR" = "y" ]; then
         flashplugin volumeicon fakeroot jshon expac wget gparted clipit transmission-gtk file-roller p7zip zip\
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
         lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
-        galculator figlet bc evince 
+        galculator figlet bc evince abs
 else
 	echo "skipping..."
 fi
@@ -69,16 +68,18 @@ fi
 # Below is to copy the most current i3 file on github to the local install.
 
 sleep 1 && echo "Copying dzen2 conky and i3-related files"
-	git clone https://github.com/CSCoder4ever/cscoder-files.git
+	git clone https://github.com/CSCoder4ever/cscoder-files.git # clone my personal repo
 	cd cscoder-files
-	mkdir /home/$userName/.i3
-	cp i3-configs/config /home/$userName/.i3/config
-	cp i3-configs/.i3status.conf /home/$userName/
-	cp conky-configs/DzenConkyBar /home/$userName/.conkyrc
-	cp conky-configs/zconky /home/$userName/.programs/Various-Scripts/zconky.sh
-	ln -s /home/$userName/.programs/Various-Scripts/zconky.sh /usr/bin/zconky
+	mkdir /home/$userName/.i3 # make i3 directory
+	cp i3-configs/config /home/$userName/.i3/config # copy i3 config && i3status.conf
+	cp i3-configs/.i3status.conf /home/$userName/ 
+	cp conky-configs/DzenConkyBar /home/$userName/.conkyrc # copy dzen2 conky to $HOME
+	cp conky-configs/zconky /home/$userName/.programs/Various-Scripts/zconky.sh # copy dzen2 settings for conky
+	ln -s /home/$userName/.programs/Various-Scripts/zconky.sh /usr/bin/zconky # make symlink for dzen2 conky
+	cp post-install/post-install-laptop.sh /etc/post-install.sh # copy post-install config
+	ln -s /etc/post-install.sh /usr/bin/post-install # make symlink for post-install
 	cd ..
-	rm -r cscoder-files
+	rm -r cscoder-files # remove personal repo since it's no longer necessary
 
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
@@ -94,5 +95,7 @@ sleep 1 && echo "removing temporary files"
 	fi
 
 sleep 1 && echo "Installation complete!"
+echo
+echo "enter \'post-install\' in the terminal as root when you reboot. "
 
 exit
