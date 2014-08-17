@@ -6,7 +6,7 @@ MNT=/mnt # change as needed.
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
-ZONE=/usr/share/zoneinfo/America/Los_Angeles #change as needed.
+ZONE=/usr/share/zoneinfo/
 LOCAL_TIME=/etc/localtime
 LOCALE_GEN=/etc/locale.gen
 LOCALE_CONF=/etc/locale.conf
@@ -71,8 +71,12 @@ sleep 1 && echo "Generating fstab"
 sleep 1 && echo "edit $HOSTNAME"
 	$USER_EDITOR /mnt$HOSTNAME
 
-sleep 1 && echo "creating a symlink for $ZONE to $LOCAL_TIME"
-	ln -s $MNT$ZONE $MNT$LOCAL_TIME
+sleep 1 && ls $MNT$ZONE | less; cd $ZONE
+sleep 1 &&  read -p "Select Zone: " $OUTER
+sleep 1 && ls $MNT$ZONE$OUTER | less; cd $OUTER
+sleep 1 && read -p "Select Subzone: " $INNER
+sleep 1 && echo "creating a symlink for $ZONE$INNER$OUTER to $LOCAL_TIME"
+	ln -s $MNT$ZONE$OUTER$INNER $MNT$LOCAL_TIME; cd 
 
 sleep 1 && echo "uncomment a section in $LOCALE_GEN"
 	$USER_EDITOR $MNT$LOCALE_GEN
