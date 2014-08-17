@@ -73,6 +73,7 @@ sleep 1 && echo "edit $HOSTNAME"
 
 # Select Zone, now with autocomplete
 
+echo "Choose your timezone." && sleep 4
 sleep 1 && ls $MNT$ZONE | less; cd $ZONE
 sleep 1 && echo "Select Zone: ( use TAB to complete if desired )"; read -e OUTER
 sleep 1 && ls $MNT$ZONE$OUTER | less; cd $OUTER
