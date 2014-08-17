@@ -6,7 +6,6 @@ MNT=/mnt
 FSTAB=/etc/fstab
 PACMAN_MIRROR=/etc/pacman.d/mirrorlist
 HOSTNAME=/etc/hostname
-ZONE=/usr/share/zoneinfo/America/Los_Angeles
 LOCAL_TIME=/etc/localtime
 LOCALE_GEN=/etc/locale.gen
 LOCALE_CONF=/etc/locale.conf
