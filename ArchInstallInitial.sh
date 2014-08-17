@@ -71,11 +71,13 @@ sleep 1 && echo "Generating fstab"
 sleep 1 && echo "edit $HOSTNAME"
 	$USER_EDITOR /mnt$HOSTNAME
 
+# Select Zone, now with autocomplete
+
 sleep 1 && ls $MNT$ZONE | less; cd $ZONE
-sleep 1 &&  read -p "Select Zone: " $OUTER
+sleep 1 && echo "Select Zone: ( use TAB to complete if desired )"; read -e OUTER
 sleep 1 && ls $MNT$ZONE$OUTER | less; cd $OUTER
-sleep 1 && read -p "Select Subzone: " $INNER
-sleep 1 && echo "creating a symlink for $ZONE$INNER$OUTER to $LOCAL_TIME"
+sleep 1 && echo "Select Subzone: ( use TAB to complete if desired )"; read -e INNER
+sleep 1 && echo "creating a symlink for $ZONE$OUTER$INNER to $LOCAL_TIME"
 	ln -s $MNT$ZONE$OUTER$INNER $MNT$LOCAL_TIME; cd 
 
 sleep 1 && echo "uncomment a section in $LOCALE_GEN"
