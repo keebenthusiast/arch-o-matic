@@ -79,7 +79,7 @@ sleep 1 && echo "Select Zone: ( use TAB to complete if desired )"; read -e OUTER
 sleep 1 && ls $MNT$ZONE$OUTER | less; cd $OUTER
 sleep 1 && echo "Select Subzone: ( use TAB to complete if desired )"; read -e INNER
 sleep 1 && echo "creating a symlink for $ZONE$OUTER$INNER to $LOCAL_TIME"
-	ln -s $MNT$ZONE$OUTER$INNER $MNT$LOCAL_TIME; cd 
+	ln -s $ZONE$OUTER$INNER $MNT$LOCAL_TIME; cd 
 
 sleep 1 && echo "uncomment a section in $LOCALE_GEN"
 	$USER_EDITOR $MNT$LOCALE_GEN
