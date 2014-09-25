@@ -49,7 +49,7 @@ if [ "$SyuR" = "y" ]; then
          scrot gimp lxappearance viewnior thunderbird libreoffice flashplugin volumeicon fakeroot jshon expac\
          wget gparted xfce4 clipit transmission-gtk file-roller p7zip zip unrar arj unace lib32-glibc libva emacs\
          mc moc openssh nfs-utils gksu lxde-icon-theme wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers\
-         dosfstools bc
+         dosfstools bc zsh
 else
 	echo "skipping..."
 fi

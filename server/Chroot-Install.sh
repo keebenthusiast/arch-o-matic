@@ -43,7 +43,7 @@ if [[ "$SyuR" = "y" || "$SyuR" = "Y" ]]; then
     pacman -Syyu 
     sleep 1 && echo "Installing necessary server programs"
     pacman -S openssh git mc samba wget htop fakeroot jshon expac nfs-utils net-tools webmin apache php php-apache\
-    mariadb perl-net-ssleay screenfetch emacs tmux bc #jenkins apache-ant maven
+    mariadb perl-net-ssleay screenfetch emacs tmux bc zsh #jenkins apache-ant maven
 else
     echo "skipping..."
 fi
