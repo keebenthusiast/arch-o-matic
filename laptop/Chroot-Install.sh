@@ -50,7 +50,7 @@ if [ "$SyuR" = "y" ]; then
         flashplugin volumeicon fakeroot jshon expac wget gparted clipit transmission-gtk file-roller p7zip zip\
         unrar arj unace lib32-glibc emacs mc openssh nfs-utils dzen2 remmina freerdp ntfs-3g gksu\
         lxde-icon-theme moc wavpack xfce4-screenshooter tmux timidity++ libstdc++5 linux-headers dosfstools\
-        galculator figlet bc evince abs zsh
+        galculator figlet bc evince abs zsh wicd
 else
 	echo "skipping..."
 fi
@@ -81,6 +81,10 @@ sleep 1 && echo "Copying dzen2 conky and i3-related files"
 	cd ..
 	rm -r cscoder-files # remove personal repo since it's no longer necessary
 
+#sleep 1 && echo "setting up dwm"
+#	abs community/dwm
+#	cp -r /var/abs/community/dwm /home/$userName/.dwm
+	
 sleep 1 && echo "removing temporary files"
 	rm /part2.sh
 
