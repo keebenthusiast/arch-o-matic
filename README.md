@@ -1,4 +1,5 @@
 Various Arch install scripts I've made for my own purpose, fork as you wish!
+( obsolete, use only for reference )
 
 #To use them: 
 
